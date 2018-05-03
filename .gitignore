@@ -1,0 +1,8 @@
+# No default .gitignore for widget apps?
+
+# Editor temporaries
+*~
+*.swp
+
+# Local non-versioned files
+*.user
