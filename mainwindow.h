@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+// namespace Ui is reserved for objects generated
+// from .ui files.
 namespace Ui {
 class MainWindow;
 }
@@ -16,6 +18,7 @@ public:
     ~MainWindow();
 
 private:
+    // This is the generated class we wrap
     Ui::MainWindow *myUI;
 };
 
