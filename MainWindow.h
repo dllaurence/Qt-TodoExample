@@ -1,15 +1,19 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <memory>
-
 #include <QMainWindow>
+
+#include <QVector>
+
+#include "Task.h"
+
 
 // namespace Ui is reserved for objects generated
 // from .ui files.
 namespace Ui {
 class MainWindow;
 }
+
 
 class MainWindow : public QMainWindow
 {
@@ -23,8 +27,10 @@ public slots:
     void addTask();
 
 private:
-    // This is the generated class we wrap
-    std::unique_ptr<Ui::MainWindow> myUI;
+    // Each object has a parallel UI object
+    Ui::MainWindow* myUI;
+    // Don't want unique_ptrs, not the owner
+    QVector<Task*> myTasks;
 };
 
 #endif // MAINWINDOW_H

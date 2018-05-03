@@ -9,9 +9,11 @@
  * Ui::* file.
  * */
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    myUI(new Ui::MainWindow)
+    myUI(new Ui::MainWindow),
+    myTasks()
 {
     myUI->setupUi(this);
 
@@ -21,11 +23,23 @@ MainWindow::MainWindow(QWidget *parent) :
             &MainWindow::addTask);
 }
 
+
 MainWindow::~MainWindow()
 {
+    // Tasks released when UI object recursively
+    // destructs its children, since we added
+    // them to the tasksLayout.
+    delete myUI;
+    myUI = nullptr;
 }
+
 
 void MainWindow::addTask()
 {
-    qDebug() << "User clicked on the button!";
+    qDebug() << "Adding new task";
+
+    Task* task = new Task("Untitled task");
+    myTasks.append(task);
+    // tasksLayout assumes ownership
+    myUI->tasksLayout->addWidget(task);
 }
