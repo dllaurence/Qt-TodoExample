@@ -12,12 +12,12 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    myUI(new Ui::MainWindow),
-    myTasks()
+    ui(new Ui::MainWindow),
+    mTasks()
 {
-    myUI->setupUi(this);
+    ui->setupUi(this);
 
-    connect(myUI->addTaskButton,
+    connect(ui->addTaskButton,
             &QPushButton::clicked,
             this,
             &MainWindow::addTask);
@@ -29,8 +29,8 @@ MainWindow::~MainWindow()
     // Tasks released when UI object recursively
     // destructs its children, since we added
     // them to the tasksLayout.
-    delete myUI;
-    myUI = nullptr;
+    delete ui;
+    ui = nullptr;
 }
 
 
@@ -39,7 +39,7 @@ void MainWindow::addTask()
     qDebug() << "Adding new task";
 
     Task* task = new Task("Untitled task");
-    myTasks.append(task);
+    mTasks.append(task);
     // tasksLayout assumes ownership
-    myUI->tasksLayout->addWidget(task);
+    ui->tasksLayout->addWidget(task);
 }

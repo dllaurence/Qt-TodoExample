@@ -28,9 +28,9 @@ public slots:
 
 private:
     // Each object has a parallel UI object
-    Ui::MainWindow* myUI;
+    Ui::MainWindow* ui;
     // Don't want unique_ptrs, not the owner
-    QVector<Task*> myTasks;
+    QVector<Task*> mTasks;
 };
 
 #endif // MAINWINDOW_H
