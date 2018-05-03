@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <memory>
+
 #include <QMainWindow>
 
 // namespace Ui is reserved for objects generated
@@ -19,7 +21,7 @@ public:
 
 private:
     // This is the generated class we wrap
-    Ui::MainWindow *myUI;
+    std::unique_ptr<Ui::MainWindow> myUI;
 };
 
 #endif // MAINWINDOW_H
