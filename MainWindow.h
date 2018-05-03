@@ -19,6 +19,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void addTask();
+
 private:
     // This is the generated class we wrap
     std::unique_ptr<Ui::MainWindow> myUI;

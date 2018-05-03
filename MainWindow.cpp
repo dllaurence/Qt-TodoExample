@@ -1,6 +1,8 @@
 #include "MainWindow.h"
 #include "ui_mainwindow.h"
 
+#include <QDebug>
+
 /*
  * MainWindow's purpose in life seems to
  * be to wrap a corresponding moc(?)-generated
@@ -15,10 +17,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(myUI->addTaskButton,
             &QPushButton::clicked,
-            QApplication::instance(),
-            &QApplication::quit);
+            this,
+            &MainWindow::addTask);
 }
 
 MainWindow::~MainWindow()
 {
+}
+
+void MainWindow::addTask()
+{
+    qDebug() << "User clicked on the button!";
 }
