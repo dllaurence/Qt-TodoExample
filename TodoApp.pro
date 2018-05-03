@@ -34,5 +34,5 @@ HEADERS += \
     Task.h
 
 FORMS += \
-    mainwindow.ui \
-    Task.ui
+    Task.ui \
+    MainWindow.ui
