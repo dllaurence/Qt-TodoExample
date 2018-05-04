@@ -4,9 +4,9 @@
 #include <QDebug>
 
 /*
- * MainWindow's purpose in life seems to
- * be to wrap a corresponding moc(?)-generated
- * Ui::* file.
+ * MainWindow seems to be the model that
+ * corresponds to a parallel, moc(?)-generated
+ * Ui::* view.
  * */
 
 
@@ -26,9 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    // Tasks released when UI object recursively
-    // destructs its children, since we added
-    // them to the tasksLayout.
+    // Tasks released when ui recursively
+    // destructs its children, since we
+    // added them to the tasksLayout.
     delete ui;
     ui = nullptr;
 }
