@@ -1,7 +1,6 @@
 #ifndef TASK_H
 #define TASK_H
 
-#include <memory>
 
 #include <QWidget>
 
@@ -25,8 +24,16 @@ public:
     QString name() const;
     bool isCompleted() const;
 
+public slots:
+
+    void rename();
+
+signals:
+
+    void removed(Task* task);
+
 private:
-    std::unique_ptr<Ui::Task> myUI;
+    Ui::Task* ui;
 };
 
 #endif // TASK_H
