@@ -15,6 +15,14 @@ Task::Task(const QString &name, QWidget *parent) :
             &QPushButton::clicked,
             this,
             &Task::rename);
+
+    connect(ui->removeButton,
+            &QPushButton::clicked,
+            [this] {
+                // Macro relays to the
+                // removed signal.
+                emit removed(this);
+            });
 }
 
 Task::~Task()
