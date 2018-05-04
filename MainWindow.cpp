@@ -2,6 +2,7 @@
 #include "ui_MainWindow.h"
 
 #include <QDebug>
+#include <QInputDialog>
 
 /*
  * MainWindow seems to be the model that
@@ -36,9 +37,22 @@ MainWindow::~MainWindow()
 
 void MainWindow::addTask()
 {
+    bool ok;
+    QString name = QInputDialog::getText(
+                this,
+                tr("Add task"),
+                tr("Task name"),
+                QLineEdit::Normal,
+                tr("Untitled task"),
+                   &ok);
+
+    if (!ok || name.isEmpty()) {
+        return;
+    }
+
     qDebug() << "Adding new task";
 
-    Task* task = new Task("Untitled task");
+    Task* task = new Task(name);
     mTasks.append(task);
     // tasksLayout assumes ownership
     ui->tasksLayout->addWidget(task);
