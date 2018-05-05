@@ -24,7 +24,10 @@ public:
     ~MainWindow();
 
 public slots:
+
     void addTask();
+
+    void removeTask(Task* task);
 
 private:
     // Each object has a parallel UI object
