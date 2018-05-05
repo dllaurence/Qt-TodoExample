@@ -2,6 +2,8 @@
 #include "ui_Task.h"
 
 #include <QInputDialog>
+#include <QDebug>
+
 
 Task::Task(const QString &name, QWidget *parent) :
     QWidget(parent),
@@ -16,13 +18,21 @@ Task::Task(const QString &name, QWidget *parent) :
             this,
             &Task::rename);
 
+#if USE_SLOT
+    connect(ui->removeButton,
+            &QPushButton::clicked,
+            this,
+            &Task::onClick);
+#else
     connect(ui->removeButton,
             &QPushButton::clicked,
             [this] {
+                qDebug() << "Relaying click via lambda";
                 // Macro relays to the
                 // removed signal.
                 emit removed(this);
             });
+#endif
 }
 
 Task::~Task()
@@ -65,3 +75,11 @@ void Task::rename()
     // Everything is automatically updated
     setName(value);
 }
+
+#if USE_SLOT
+void Task::onClick()
+{
+    qDebug() << "Relaying click via slot";
+    removed(this);
+}
+#endif

@@ -6,6 +6,11 @@
 
 #include <QString>
 
+// Allows the alternate, more verbose signal
+// relay with an extra slot rather than a
+// closure.
+#define USE_SLOT 1
+
 
 namespace Ui {
 class Task;
@@ -27,6 +32,10 @@ public:
 public slots:
 
     void rename();
+
+#if USE_SLOT
+    void onClick();
+#endif
 
 signals:
 
