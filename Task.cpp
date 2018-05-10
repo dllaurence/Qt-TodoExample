@@ -26,13 +26,19 @@ Task::Task(const QString &name, QWidget *parent) :
 #else
     connect(ui->removeButton,
             &QPushButton::clicked,
-            [this] {
+            [this]
+            {
                 qDebug() << "Relaying click via lambda";
                 // Macro relays to the
                 // removed signal.
                 emit removed(this);
             });
 #endif
+
+    connect(ui->checkbox,
+            &QCheckBox::toggled,
+            this,
+            &Task::checked);
 }
 
 Task::~Task()
@@ -83,3 +89,12 @@ void Task::onClick()
     removed(this);
 }
 #endif
+
+void Task::checked(bool checked)
+{
+    QFont font(ui->checkbox->font());
+    font.setStrikeOut(checked);
+    ui->checkbox->setFont(font);
+
+    emit statusChanged(this);
+}
